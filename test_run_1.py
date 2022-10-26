@@ -9,7 +9,7 @@ from playwright.sync_api import Playwright, sync_playwright, expect
 # @pytest.mark.parametrize("password", ["StartOfSummer21!",
 #                                              pytest.param("new@new.com", marks=pytest.mark.xfail),
 #                                              pytest.param("new1@gmail.com", marks=pytest.mark.xfail)])
-def test_run_1(playwright: Playwright):
+def test_run_1(playwright: Playwright) -> None:
     # Assess - Given
     browser = playwright.chromium.launch(headless=False, slow_mo=500)
     context = browser.new_context()
