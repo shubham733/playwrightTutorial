@@ -1,0 +1,25 @@
+https://playwright.dev/python/docs/test-runners
+
+--headed: Run tests in headed mode (default: headless)
+    pytest --headed
+
+--browser: Run tests in a different browser chromium, firefox or webkit. It can be specified multiple times (default: all browsers)
+    pytest --browser=firefox or pytest --browser=firefox --browser webkit
+
+--browser-channel: Browser channel to be used
+    pytest --browser-channel chrome
+
+--slowmo: Run tests with slow mo
+    pytest --slowmo=400
+
+--device: Device to be emulated
+    pytest --device="iPhone 11"
+
+--video: Whether to record video for each test. on, off, or retain-on-failure (default: off)
+    pytest --video=retain-on-failure
+
+--screenshot: Whether to automatically capture a screenshot after each test. on, off, or only-on-failure (default: off)
+    pytest --screenshot=only-on-failure or pytest --screenshot=only-on-failure --output={test_result_folder_name}
+
+--base-url: Specify a base url
+    pytest --base-url={test_url}
