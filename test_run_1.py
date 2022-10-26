@@ -9,7 +9,7 @@ from playwright.sync_api import Playwright, sync_playwright, expect
 # @pytest.mark.parametrize("password", ["StartOfSummer21!",
 #                                              pytest.param("new@new.com", marks=pytest.mark.xfail),
 #                                              pytest.param("new1@gmail.com", marks=pytest.mark.xfail)])
-def test_run_1(playwright: Playwright, email, password):
+def test_run_1(playwright: Playwright):
     # Assess - Given
     browser = playwright.chromium.launch(headless=False, slow_mo=500)
     context = browser.new_context()
@@ -21,9 +21,9 @@ def test_run_1(playwright: Playwright, email, password):
 
     # Act - When/And
     page.locator("input[name=\"username\"]").click()
-    page.locator("input[name=\"username\"]").fill(email)
+    page.locator("input[name=\"username\"]").fill("simplelegaldemo+professional@gmail.com")
     page.locator("input[name=\"password\"]").click()
-    page.locator("input[name=\"password\"]").fill(password)
+    page.locator("input[name=\"password\"]").fill("StartOfSummer21!")
     page.locator("button:has-text('Sign In')").click()
     page.locator("[data-testid=\"quick_add\"] svg").click()
     # with page.expect_navigation():
