@@ -1,10 +1,14 @@
 import os
-
 import playwright
 import pytest
 from playwright.sync_api import Playwright
 
-# import utils.secret_config
+
+try:
+    PASSWORD = os.environ['PASSWORD']
+except KeyError:
+    import utils.secret_config
+    PASSWORD = utils.secret_config.PASSWORD
 
 
 @pytest.fixture(scope="function")
@@ -19,7 +23,7 @@ def set_up(browser):
     page.set_default_timeout(5000)
     page.fill('input:below(:text("Email"))', "simplelegaldemo+professional@gmail.com")
     # page.fill('input:below(:text("Password"))', utils.secret_config.PASSWORD)
-    page.fill('input:below(:text("Password"))', os.environ['PASSWORD'])
+    page.fill('input:below(:text("Password"))', PASSWORD)
     page.locator("button:has-text('Sign In')").click()
 
     yield page
