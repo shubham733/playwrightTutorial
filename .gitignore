@@ -1,6 +1,10 @@
 /venv/
 /.idea/
 *.env
-/utils/*.py
+/utils/secret_config.py
+
+
+
+
 
 
