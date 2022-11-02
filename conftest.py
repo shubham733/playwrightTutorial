@@ -12,10 +12,10 @@ PASSWORD = os.environ['PASSWORD']
 #     PASSWORD = utils.secret_config.PASSWORD
 
 
-@pytest.fixture(scope="function")
-def set_up(browser):
+@pytest.fixture(scope="session")
+def context_creation(playwright):
     # Assess - Given
-    # browser = playwright.firefox.launch(headless=False)
+    browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     context.clear_cookies()
     page = context.new_page()
@@ -27,8 +27,19 @@ def set_up(browser):
     page.fill('input:below(:text("Password"))', PASSWORD)
     page.locator("button:has-text('Sign In')").click()
 
+    yield context
+
+
+
+@pytest.fixture()
+def set_up(context_creation):
+    context = context_creation
+    page = context.new_page()
+    page.goto("https://master.eb.uat.simplelegal.dev/", timeout=0)
+    page.set_default_timeout(5000)
+
     yield page
-    page.close()
+
 
 
 
